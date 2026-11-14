@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: saludo-cronjob
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hola-cnt
+            image: busybox:latest
+            command: ["/bin/sh", "-c", "date; echo 'Hola desde Kubernetes, soy YANIL :)'"]
+          restartPolicy: OnFailure
